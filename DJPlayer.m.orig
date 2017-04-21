@@ -1,0 +1,70 @@
+//
+//  DJPlayer.m
+//  BallparkDJ
+//
+//  Created by Digital Mongoose on 2/22/13.
+//  Copyright (c) 2013 Digital Mongoose. All rights reserved.
+//
+
+#import "DJPlayer.h"
+
+@implementation DJPlayer
+
+@synthesize audio;
+@synthesize name;
+@synthesize number;
+
+#pragma mark - Initialization:
+
+-(id)init {
+    self = [super init];
+    self.audio = [[DJAudio alloc] init];
+    return self;
+}
+
+-(id)initWithName:(NSString *)n andWithNumber:(int)num {
+    self = [super init];
+    self.name = n;
+    self.number = num;
+    
+    return self;
+}
+
+#pragma mark - Serialization:
+
+//-(id)initWithUnarchiver:(NSKeyedUnarchiver *)unarchiver withPath:(NSString *) index{
+//    self = [super init];
+//    self.audio = [[DJAudio alloc]initWithUnarchiver:unarchiver withPath:index];
+//    self.number = [unarchiver decodeIntForKey:[index stringByAppendingString:@"_number"]];
+//    self.name = [unarchiver decodeObjectForKey:[index stringByAppendingString:@"_name"]];
+//    return self;
+//}
+-(id)initWithCoder:(NSCoder *)coder {
+<<<<<<< Updated upstream
+    self = [super init];
+    
+    self.playerAudio = [[coder decodeObjectForKey:@"_audio"] retain];
+    self.playerName  = [[coder decodeObjectForKey:@"_name"] retain];
+    self.playerNumber = [coder decodeIntForKey:@"_number"];
+=======
+    self.audio = [coder decodeObjectForKey:@"_audio"];
+    self.name  = [coder decodeObjectForKey:@"_name"];
+    self.number = [coder decodeIntForKey:@"_number"];
+>>>>>>> Stashed changes
+    
+    return self;
+}
+
+//-(void)encodeWithArchiver:(NSKeyedArchiver *)archiver withPath:(NSString *) index{
+//    [self.audio encodeWithArchiver:archiver withPath: index];
+//    [archiver encodeInt: self.number forKey:[index stringByAppendingString:@"_number"]];
+//    [archiver encodeObject:self.name forKey:[index stringByAppendingString:@"_name"]];
+//}
+
+-(void)encodeWithCoder:(NSCoder *)coder {
+    [coder encodeObject:self.audio forKey:@"_audio"];
+    [coder encodeObject:self.name forKey:@"_name"];
+    [coder encodeInt:self.number forKey:@"_number"];
+}
+
+@end
